@@ -3,6 +3,7 @@
 	session_start();
 	$username = array("abdul", "jack", "mo");
 	$password = array("12345", "12345", "12345");
+	$_SESSION['fail'] = 0;
 	
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		for($i = 0; $i < count($username); $i++){
