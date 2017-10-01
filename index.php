@@ -8,12 +8,13 @@
 		for($i = 0; $i < count($username); $i++){
 			if($_POST['username'] == $username[$i] && $_POST['password'] == $password[$i]){
 				$_SESSION['loggedin'] = true;
-				echo "your user name is: ". $username[$i];
+				$_SESSION['username'] = $_POST['username'];
+				header("Location: logein.php");
 				break;
 			}
 			else if($_POST['username'] != $username[$i] && $_POST['password'] != $password[$i]){
-				$_SESSION['loggedin'] = false;
-				echo "Warning invaled username or password";
+				$_SESSION['fail'] = $_SESSION['fail'] + 1;
+				echo "Warning invaled username or password". $_SESSION['fail'];
 				break;
 			}	
 		}
@@ -28,7 +29,8 @@
 		<input type="text" name="username"><br/>
 		Password<br/>
 		<input type="password" name="password"><br/>		
-		<input type="submit" value="login!">
+		<input type="submit" value="login">
+		
 	</form>
 
 </body>
