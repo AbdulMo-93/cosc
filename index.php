@@ -15,7 +15,7 @@
 			}
 			else if($_POST['username'] != $username[$i] && $_POST['password'] != $password[$i]){
 				$_SESSION['fail'] = $_SESSION['fail'] + 1;
-				echo "Warning invaled username or password". $_SESSION['fail'];
+				echo "Warning invaled username or password ". $_SESSION['fail'];
 				break;
 			}	
 		}
