@@ -29,9 +29,15 @@
 		Password<br/>
 		<input type="password" name="password"><br/>		
 		<input type="submit" value="Login">
+		  <br/>
 	</form>
 	<form method="post" action= "report.php">
 		<input type="submit" value="Report">
+		  <br/>
 	</form>
+	<form method="post" action= "createAccount.php">
+		<input type="submit" value="Create Account">
+	</form>
+	
 </body>
 </html>
