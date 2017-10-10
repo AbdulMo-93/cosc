@@ -27,15 +27,18 @@
 		Username:<br/>
 		<input type="text" name="username"><br/>
 		Password<br/>
-		<input type="password" name="password"><br/>		
+		<input type="password" name="password"><br/>
+		<br/>		
 		<input type="submit" value="Login">
-		  <br/>
+		
 	</form>
 	<form method="post" action= "report.php">
+		<br/>
 		<input type="submit" value="Report">
-		  <br/>
+		
 	</form>
 	<form method="post" action= "createAccount.php">
+		<br/>
 		<input type="submit" value="Create Account">
 	</form>
 	
