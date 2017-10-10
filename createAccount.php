@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
 <?php
-	
-?>
+session_start();
 
+
+?>
 <html>
 <body>
+  <br/>
 	Creating Account<br/>
 	  <br/>
-	<form method="post" action="createAccount.php">
+	<form method="post" action="addToTable.php">
 		Username:<br/>
 		<input type="text" name="username"><br/>
 		Password<br/>
@@ -17,7 +19,7 @@
 		last Name:<br/>
 		<input type="text" name="LastName"><br/>
 		E-mail:<br/>
-		<input type="text" name="LastName"><br/>
+		<input type="text" name="Email"><br/>
 		  <br/>
 		<input type="submit" value="Login">
 		
