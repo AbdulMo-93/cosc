@@ -11,6 +11,12 @@ session_start();
 	$lname = $_POST['LastName'];
 	$email = $_POST['Email'];
 	
+	$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+	$salt = sprintf("$2a$%02d$", $cost) . $salt;
+	$salted_password = $pass . $salt;  // apply salt to password
+	# hash the password
+	$hashPass = hash('sha256', $salted_password);
+
 	try{
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
@@ -18,7 +24,7 @@ session_start();
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
     $sql = "INSERT INTO `users`(`Username`, `Password`, `First name`, `Last name`, `E-mail`)
-			VALUES ('$user','$pass','$fname' ,'$lname','$email')";
+			VALUES ('$user','$hashPass','$fname' ,'$lname','$email')";
     // use exec() because no results are returned
     $conn->exec($sql);
 	header("Location: index.php");
