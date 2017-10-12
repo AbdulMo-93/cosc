@@ -1,24 +1,27 @@
 <!DOCTYPE HTML>
 <?php
-	$_SESSION['fail'] =  0;
 	session_start();
+	$servername = "localhost";
+	$dbusername = "root";
+	$dbpassword = "";
+	$dbname = "cosc";
+	if(isset($username) == true){
+	$username = $_POST['username'];
+	$password = $_POST['password'];
 
-	$username = array("abdul", "jack", "mo");
-	$password = array("12345", "00000", "11111");
-	
-	if(isset($_POST['username']) && isset($_POST['password'])){
-		for($i = 0; $i < 3; $i++){
-			if($_POST['username'] == $username[$i] && $_POST['password'] == $password[$i]){
-				$_SESSION['loggedin'] = true;
-				$_SESSION['username'] = $_POST['username'];
-				$_SESSION['password'] = $_POST['password'];
-				header("Location: welcome.php");
-			}
-		}
-	$_SESSION['fail'] = $_SESSION['fail'] + 1;
-	echo "Warning invaled username or password ";	
+	$conn = mysqli_connect($servername, $dbusername, $dbpassword) or die("Could not connect to database");
+	mysqli_select_db($conn,$dbname);
+	   
+	$query = "SELECT * FROM users WHERE Username = '$username' AND Password = '$password'";
+	$result = mysqli_query($conn,$query);
+	$rowSelected = mysqli_num_rows($result);
+	if ($rowSelected == true) {
+		echo "yes found it";
 	}
-	
+	else {
+		echo "User dosen't exit!";
+	}
+	}
 ?>
 
 <html>
@@ -45,3 +48,4 @@
 	
 </body>
 </html>
+
