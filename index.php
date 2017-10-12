@@ -5,22 +5,34 @@
 	$dbusername = "root";
 	$dbpassword = "";
 	$dbname = "cosc";
-	if(isset($username) == true){
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-
-	$conn = mysqli_connect($servername, $dbusername, $dbpassword) or die("Could not connect to database");
-	mysqli_select_db($conn,$dbname);
-	   
-	$query = "SELECT * FROM users WHERE Username = '$username' AND Password = '$password'";
-	$result = mysqli_query($conn,$query);
-	$rowSelected = mysqli_num_rows($result);
-	if ($rowSelected == true) {
-		echo "yes found it";
+	
+	
+	
+	if(isset($_SESSION['fail']) == true){
+		if(isset($_POST['username']) && isset($_POST['password']) == true){
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			
+			$conn = mysqli_connect($servername, $dbusername, $dbpassword) or die("Could not connect to database");
+			mysqli_select_db($conn,$dbname);
+			$query = "SELECT * FROM users WHERE Username = '$username' AND Password = '$password'";
+			$result = mysqli_query($conn,$query);
+			$rowSelected = mysqli_num_rows($result);
+			if ($rowSelected == true) {
+				header("Location: welcome.php");
+			}
+			else {
+					
+				$_SESSION['fail'] = $_SESSION['fail'] + 1;
+				echo $hashPass;
+				echo "User or Password is Wrong!";
+			}
 	}
-	else {
-		echo "User dosen't exit!";
+	else{
+		
 	}
+	}else{
+	$_SESSION['fail']=0;
 	}
 ?>
 
