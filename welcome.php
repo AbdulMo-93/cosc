@@ -2,7 +2,7 @@
 <?php
 	session_start();
 	
-	echo "Hello " . $_SESSION['username'] . " your password is " . $_SESSION['password'];
+	echo "Hello, You are in";
 	echo " Date is " . date("Y/m/d") . " Time is " . date("h/i/s");
 	//for refresh page skip
 	if (!empty($_SESSION['authenticated '])){ 
