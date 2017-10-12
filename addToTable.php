@@ -11,8 +11,6 @@ session_start();
 	$lname = $_POST['LastName'];
 	$email = $_POST['Email'];
 	
-	
-	
 	try{
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
@@ -21,12 +19,9 @@ session_start();
 	
     $sql = "INSERT INTO `users`(`Username`, `Password`, `First name`, `Last name`, `E-mail`)
 			VALUES ('$user','$pass','$fname' ,'$lname','$email')";
-
-	
-	
     // use exec() because no results are returned
     $conn->exec($sql);
-    echo "New record created successfully";
+	header("Location: index.php");
     }
 catch(PDOException $e)
     {
