@@ -11,12 +11,7 @@ session_start();
 	$lname = $_POST['LastName'];
 	$email = $_POST['Email'];
 	
-	$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-	$salt = sprintf("$2a$%02d$", $cost) . $salt;
-	$salted_password = $pass . $salt;  // apply salt to password
-	# hash the password
-	$hashPass = hash('sha256', $salted_password);
-
+	$hashPass = password_hash($pass, PASSWORD_DEFAULT, ['cost' => 15]);
 	try{
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
