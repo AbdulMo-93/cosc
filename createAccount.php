@@ -21,7 +21,7 @@ session_start();
 		E-mail:<br/>
 		<input type="text" name="Email"><br/>
 		  <br/>
-		<input type="submit" value="Regester">
+		<input type="submit" value="Register">
 		
 	</form>
 </body>
